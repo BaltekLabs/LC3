@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Adminox - Responsive Web App Kit</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{{url_for('static',filename='assets/images/favicon.ico')}}">
+
+        <!-- C3 charts css -->
+        <link href="{{url_for('static',filename='plugins/c3/c3.min.css')}}" rel="stylesheet" type="text/css"  />
+
+        <link href="{{url_for('static',filename='plugins/spinkit/spinkit.css')}}" rel="stylesheet" />
+        <!-- App css -->
+        <link href="{{url_for('static',filename='assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{url_for('static',filename='assets/css/icons.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{url_for('static',filename='assets/css/metismenu.min.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{url_for('static',filename='assets/css/style.css')}}" rel="stylesheet" type="text/css" />
+
+        <script src="{{url_for('static',filename='assets/js/modernizr.min.js')}}"></script>
+
+    </head>
+
+
+    <body>
+
+        <!-- Begin page -->
+        <div id="wrapper">
+
+            <!-- Top Bar Start -->
+            <div class="topbar">
+
+                <!-- LOGO -->
+                <div class="topbar-left">
+                    <a href="index.html" class="logo">
+                                <span>
+                                    <img src="{{url_for('static',filename='assets/images/logo_dark_liquid.png')}}" alt="" height="25">
+                                </span>
+                        <i>
+                            <img src="{{url_for('static',filename='assets/images/logo_sm_liquid.png')}}" alt="" height="28">
+                        </i>
+                    </a>
+                </div>
+
+                <nav class="navbar-custom">
+
+                    <ul class="list-inline float-right mb-0">
+                        <li class="list-inline-item dropdown notification-list">
+                            <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button"
+                               aria-haspopup="false" aria-expanded="false">
+                                <i class="dripicons-bell noti-icon"></i>
+                                <span class="badge badge-pink noti-icon-badge">4</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-lg" aria-labelledby="Preview">
+                                <!-- item-->
+                                <div class="dropdown-item noti-title">
+                                    <h5><span class="badge badge-danger float-right">5</span>Notification</h5>
+                                </div>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon bg-success"><i class="icon-bubble"></i></div>
+                                    <p class="notify-details">Robert S. Taylor commented on Admin<small class="text-muted">1 min ago</small></p>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon bg-info"><i class="icon-user"></i></div>
+                                    <p class="notify-details">New user registered.<small class="text-muted">1 min ago</small></p>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon bg-danger"><i class="icon-like"></i></div>
+                                    <p class="notify-details">Carlos Crouch liked <b>Admin</b><small class="text-muted">1 min ago</small></p>
+                                </a>
+
+                                <!-- All-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item notify-all">
+                                    View All
+                                </a>
+
+                            </div>
+                        </li>
+
+                        <li class="list-inline-item dropdown notification-list">
+                            <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
+                               aria-haspopup="false" aria-expanded="false">
+                                <img src="{{url_for('static',filename='assets/images/users/avatar-1.jpg')}}" alt="user" class="rounded-circle">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
+                                <!-- item-->
+                                <div class="dropdown-item noti-title">
+                                    <h5 class="text-overflow"><small>Welcome ! {{ user_name }}</small> </h5>
+                                </div>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-account-circle"></i> <span>Profile</span>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-settings"></i> <span>Settings</span>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-lock-open"></i> <span>Lock Screen</span>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-power"></i> <span>Logout</span>
+                                </a>
+
+                            </div>
+                        </li>
+
+                    </ul>
+
+                    <ul class="list-inline menu-left mb-0">
+                        <li class="float-left">
+                            <button class="button-menu-mobile open-left waves-light waves-effect">
+                                <i class="dripicons-menu"></i>
+                            </button>
+                        </li>
+                        <li class="hide-phone app-search">
+                            <form role="search" class=""action="/stockQuote" method="POST">
+                                <input name="stock_search" type="text" placeholder="Search Stock..." class="form-control">
+                                <a href=""><i class="fa fa-search"></i></a>
+                            </form>
+                            <!--form style="height:350px;padding: 5%" action="/stockQuote" method="POST">
+                                <input name="stock_search" type="text" class="user_form">
+                                <!input type="submit" style="border-color:snow;color: snow;width: 175px;height:55px;background-color: black;border-radius: 9px" value="Find Liquidity"-->
+                            </form--> 
+                        </li>
+                    </ul>
+
+                </nav>
+
+            </div>
+            <!-- Top Bar End -->
+
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="left side-menu">
+                <div class="slimscroll-menu" id="remove-scroll">
+
+                    <!--- Sidemenu -->
+                    <div id="sidebar-menu">
+                        <!-- Left Menu Start -->
+                        <ul class="metismenu" id="side-menu">
+                            <li class="menu-title">Navigation</li>
+                            
+                            <li>
+                                <a href="/userHome"><i class="fi-air-play"></i> <span> Dashboard </span></a>
+                            </li>
+
+                            <li>
+                                <a href="/profile"><i class="fi-head"></i> <span> Profile </span></a>
+                            </li>
+
+                            <li>
+                                <a href="taskboard.html"><i class="fi-paper"></i> <span> News </span></a>
+                            </li>
+                            
+                            <li>
+                               <a href="/research"><i class="fi-bar-graph-2"></i> <span> Research </span></a>
+                            </li>
+
+                            <li>
+                                <a href="/calendar"><i class="fi-content-left"></i> <span> Calendar </span></a>
+                             </li>
+
+                            <li>
+                                <a href="javascript: void(0);"><i class="fi-layers"></i> <span> Trade Book </span> <span class="menu-arrow"></span></a>
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    <li><a href="admin-grid.html">Overview</a></li>
+                                    <li><a href="admin-sweet-alert.html">Open Orders</a></li>
+                                    <li><a href="admin-tiles.html">Order History</a></li>
+                                    <li><a href="admin-nestable.html">P&L</a></li>
+                                   
+                                </ul>
+                            </li>
+
+
+                            <li>
+                                <a href="javascript: void(0);"><i class="fi-speech-bubble"></i><span> Messenger </span> <span class="menu-arrow"></span></a>
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    <li><a href="/messageBox">Inbox</a></li>
+                                    <li><a href="email-read.html">New Message</a></li>
+                                    <li><a href="email-compose.html">Contacts</a></li>
+                                </ul>
+                            </li>
+                            
+                            <li>
+                                <a href="javascript: void(0);"><i class="fi-link"></i><span> Chain </span> <span class="menu-arrow"></span></a>
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    <li><a href="icons-colored.html">Your Chain Info</a></li>
+                                    <li><a href="icons-materialdesign.html">Block Search</a></li>
+                                    <li><a href="icons-dripicons.html">Refresh Chain</a></li>
+                                   
+                                </ul>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                    <!-- Sidebar -->
+                    <div class="clearfix"></div>
+
+                </div>
+                <!-- Sidebar -left -->
+
+            </div>
+            <!-- Left Sidebar End -->
+
+
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="content-page">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container-fluid">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <h4 class="page-title float-left">Dashboard</h4>
+
+                                    <ol class="breadcrumb float-right">
+                                        <li class="breadcrumb-item"><a href="#">Adminox</a></li>
+                                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                                        <li class="breadcrumb-item active">Dashboard 1</li>
+                                    </ol>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+
+
+                       
+
+
+                        <div class="row">
+                            <div class="col-xl-4">
+                                <div class="card-box">
+                                    <h4 class="header-title m-t-0 m-b-30">Liquid Block Status</h4>
+
+                                    
+                                    <div class="card-box">
+                                        <h4 class="m-t-0 header-title">Block Active</h4>
+    
+                                        <div class="sk-cube-grid">
+                                            <div class="sk-cube sk-cube1"></div>
+                                            <div class="sk-cube sk-cube2"></div>
+                                            <div class="sk-cube sk-cube3"></div>
+                                            <div class="sk-cube sk-cube4"></div>
+                                            <div class="sk-cube sk-cube5"></div>
+                                            <div class="sk-cube sk-cube6"></div>
+                                            <div class="sk-cube sk-cube7"></div>
+                                            <div class="sk-cube sk-cube8"></div>
+                                            <div class="sk-cube sk-cube9"></div>
+                                        </div>
+                                    </div>
+                                    <div class="card-box">
+                                        <h4 class="m-t-0 header-title">Block not Synced</h4>
+    
+                                        <div class="sk-spinner sk-spinner-pulse"></div>
+                                    </div>
+                                    <!--div class="chart-container">
+                                        <div class="" style="height:280px" id="platform_type_dates_donut"></div>
+                                    </div-->
+                                </div>
+                            </div>
+
+                            <div class="col-xl-7">
+                                <div class="card-box">
+                                    <h4 class="header-title m-t-0 m-b-30">Portfolio Performance</h4>
+                                         <div class="chart-container">
+                                        <div class="" style="height:280px" id="platform_type_dates_donut"></div>
+                                    </div>
+                                    <!--div class="text-center">
+                                        <h5 class="font-normal text-muted">You have to pay</h5>
+                                        <h3 class="m-b-30"><i class="mdi mdi-arrow-down-bold-hexagon-outline text-danger"></i> 5623 <small>USD</small></h3>
+                                    </div>
+
+                                    <div class="chart-container">
+                                        <div class="" style="height:280px" id="user_type_bar"></div>
+                                    </div-->
+                                </div>
+                            </div>
+
+                            <div class="col-xl-4">
+                                <div class="card-box">
+                                    <div class="chart-container">
+                                        <div class="" style="height:280px" id="user_type_bar"></div>
+                                    </div>
+                                    <!--h4 class="header-title m-t-0 m-b-30">Goal Completion</h4>
+
+                                    <div class="text-center">
+                                        <h5 class="font-normal text-muted">You have to pay</h5>
+                                        <h3 class="m-b-30"><i class="mdi mdi-arrow-up-bold-hexagon-outline text-success"></i> 12548 <small>USD</small></h3>
+                                    </div>
+
+                                    <div class="chart-container">
+                                        <div class="chart has-fixed-height" style="height:280px" id="page_views_today"></div>
+                                    </div>
+                                </div>
+                            </div-->
+                        </div>
+                        <!-- end row -->
+
+
+                       
+
+                    </div> <!-- container -->
+
+                </div> <!-- content -->
+
+                <footer class="footer text-right">
+                    2017 - 2018 © Adminox. - Coderthemes.com
+                </footer>
+
+            </div>
+
+
+            <!-- ============================================================== -->
+            <!-- End Right content here -->
+            <!-- ============================================================== -->
+
+
+        </div>
+        <!-- END wrapper -->
+
+
+
+        <!-- jQuery  -->
+        <script src="{{url_for('static',filename='assets/js/jquery.min.js')}}"></script>
+        <script src="{{url_for('static',filename='assets/js/popper.min.js')}}"></script><!-- Popper for Bootstrap -->
+        <script src="{{url_for('static',filename='assets/js/bootstrap.min.js')}}"></script>
+        <script src="{{url_for('static',filename='assets/js/metisMenu.min.js')}}"></script>
+        <script src="{{url_for('static',filename='assets/js/waves.js')}}"></script>
+        <script src="{{url_for('static',filename='assets/js/jquery.slimscroll.js')}}"></script>
+
+        <!-- Counter js  -->
+        <script src="{{url_for('static',filename='plugins/waypoints/jquery.waypoints.min.js')}}"></script>
+        <script src="{{url_for('static',filename='plugins/counterup/jquery.counterup.min.js')}}"></script>
+
+        <!--C3 Chart-->
+        <script type="text/javascript" src="{{url_for('static',filename='plugins/d3/d3.min.js')}}"></script>
+        <script type="text/javascript" src="{{url_for('static',filename='plugins/c3/c3.min.js')}}"></script>
+
+        <!--Echart Chart-->
+        <script src="{{url_for('static',filename='plugins/echart/echarts-all.js')}}"></script>
+
+        <!-- Dashboard init -->
+        <script src="{{url_for('static',filename='assets/pages/jquery.dashboard.js')}}"></script>
+
+        <!-- App js -->
+        <script src="{{url_for('static',filename='assets/js/jquery.core.js')}}"></script>
+        <script src="{{url_for('static',filename='assets/js/jquery.app.js')}}"></script>
+
+    </body>
+</html>
