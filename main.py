@@ -1,26 +1,35 @@
 from flask import Flask, request, render_template, redirect, url_for, session
 import requests
 import io
-from flask_pymongo import PyMongo
+from pymongo import MongoClient
 import bcrypt
-import jsonify
+import pandas as pd
+import os
+
+#   IMPORTS TO BE USED   #
 
 #import csv
 #from lightmatchingengine.lightmatchingengine import LightMatchingEngine, Side
-import pandas as pd
+#import jsonify
 #lme = LightMatchingEngine()
 
 
 # APP CONFIG
 app = Flask(__name__)
 
-app.config['MONGO_DBNAME'] = 'mongologinexample'
-app.config['MONGO_URI'] = 'mongodb://pretty:printed@ds021731.mlab.com:21731/mongologinexample'
+client = MongoClient('mongodb://mongodb:27017/LC3')
+db = client.LC3
 
-mongo = PyMongo(app)
+#   LOCAL MONGO CONFIG FOR USER LOGIN   #
+#app.config['MONGO_DBNAME'] = 'mongologinexample'
+#app.config['MONGO_URI'] = 'mongodb://pretty:printed@ds021731.mlab.com:21731/mongologinexample'
+#mongo = PyMongo(app)
 
 
-# PAGE ROUTES
+
+
+
+##### PAGE ROUTES #####
 
 @app.route("/")
 def index():
@@ -37,9 +46,9 @@ def home():
 def userLanding():
     return render_template('/userLanding.html')
 
-@app.route('/falseIdent')
+""" @app.route('/falseIdent')
 def falseIdent():
-    return render_template('/homelandingNullLogin.html')
+    return render_template('/homelandingNullLogin.html') """
 
 @app.route('/profile')
 def profile():
@@ -78,11 +87,13 @@ def userHome():
     session['user_name']= user_name   
     return render_template('/user-main.html', user_name=user_name)
         
+##### DASHBOARD CONTROL #####
+
 @app.route('/dashboard', methods=['POST','GET'])
 def dashboard():
     API_KEY = '8XTSMCVVBO5CJLT9'
-    #if request.method == 'POST':
-#        stock_request = request.form['stock_search'] 
+    #if request.method == 'POST': 
+    # OLD SEARCH BAR  stock_request = request.form['stock_search'] 
     r = requests.get('https://www.alphavantage.co/query?function=BATCH_STOCK_QUOTES&symbols=BA,AAPL,MMM&apikey='+ API_KEY)
     ba = requests.get('https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=BA&apikey='+ API_KEY)
     aapl = requests.get('https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=AAPL&apikey='+ API_KEY)
@@ -153,35 +164,35 @@ def buyEntered():
 
 
 
-#USER AUTHENTIFICATION 
+##### USER AUTHENTIFICATION #####
 
-@app.route('/login', methods=['POST'])
-def login():
-    users = mongo.db.users
-    login_user = users.find_one({'name' : request.form['username']})
+# @app.route('/login', methods=['POST'])
+# def login():
+#     users = mongo.db.users
+#     login_user = users.find_one({'name' : request.form['username']})
 
-    if login_user:
-        if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
-            session['username'] = request.form['username']
-            return redirect(url_for('/'))
+#     if login_user:
+#         if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
+#             session['username'] = request.form['username']
+#             return redirect(url_for('/'))
 
-    return 'Invalid username/password combination'
+#     return 'Invalid username/password combination'
 
-@app.route('/register', methods=['POST', 'GET'])
-def register():
-    if request.method == 'POST':
-        users = mongo.db.users
-        existing_user = users.find_one({'name' : request.form['username']})
+# @app.route('/register', methods=['POST', 'GET'])
+# def register():
+#     if request.method == 'POST':
+#         users = mongo.db.users
+#         existing_user = users.find_one({'name' : request.form['username']})
 
-        if existing_user is None:
-            hashpass = bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
-            users.insert({'name' : request.form['username'], 'password' : hashpass})
-            session['username'] = request.form['username']
-            return redirect(url_for('index'))
+#         if existing_user is None:
+#             hashpass = bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
+#             users.insert({'name' : request.form['username'], 'password' : hashpass})
+#             session['username'] = request.form['username']
+#             return redirect(url_for('index'))
         
-        return 'That username already exists!'
+#         return 'That username already exists!'
 
-    return render_template('page-register.html')
+#     return render_template('page-register.html')
 
 
 
@@ -193,6 +204,6 @@ def register():
 if __name__ == "__main__":
     app.secret_key = 'super secret key'
     app.config['SESSION_TYPE'] = 'filesystem'
-    app.run(debug=True)
+    app.run(host= 0.0.0.0, debug=True)
 
     

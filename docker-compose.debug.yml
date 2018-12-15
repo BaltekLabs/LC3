@@ -1,0 +1,10 @@
+version: '2.1'
+
+services:
+  lc3:
+    image: lc3
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
