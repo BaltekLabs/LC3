@@ -8,7 +8,7 @@ FROM python:3.6
 # If you prefer miniconda:
 #FROM continuumio/miniconda3
 
-LABEL Name=lc3 Version=0.0.1
+LABEL Name=liquid_chain Version=0.0.1
 EXPOSE 5000
 
 WORKDIR /app
@@ -16,7 +16,6 @@ ADD . /app
 
 # Using pip:
 RUN python3 -m pip install -r requirements.txt
-CMD ["python3", "-m", "lc3"]
 
 # Using pipenv:
 #RUN python3 -m pip install pipenv

@@ -11,6 +11,6 @@ services:
     ports:
       - "5000:5000"
     volumes: 
-      - .:/LC3
+      - .:/app
     links:
       - mongodb
